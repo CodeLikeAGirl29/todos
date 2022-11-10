@@ -1,14 +1,12 @@
-// This is the array that will hold the todo list items
 let todoItems = [];
 
 function renderTodo(todo) {
-	localStorage.setItem('todoItemsRef', JSON.stringify(todoItems));
+	localStorage.setItem('todoItems', JSON.stringify(todoItems));
 
 	const list = document.querySelector('.js-todo-list');
 	const item = document.querySelector(`[data-key='${todo.id}']`);
 
 	if (todo.deleted) {
-		// remove the item from the DOM
 		item.remove();
 		if (todoItems.length === 0) list.innerHTML = '';
 		return;
@@ -34,9 +32,6 @@ function renderTodo(todo) {
 	}
 }
 
-// This function will create a new todo object based on the
-// text that was entered in the text input, and push it into
-// the `todoItems` array
 function addTodo(text) {
 	const todo = {
 		text,
@@ -49,40 +44,26 @@ function addTodo(text) {
 }
 
 function toggleDone(key) {
-	// findIndex is an array method that returns the position of an element
-	// in the array.
 	const index = todoItems.findIndex((item) => item.id === Number(key));
-	// Locate the todo item in the todoItems array and set its checked
-	// property to the opposite. That means, `true` will become `false` and vice
-	// versa.
 	todoItems[index].checked = !todoItems[index].checked;
 	renderTodo(todoItems[index]);
 }
 
 function deleteTodo(key) {
-	// find the corresponding todo object in the todoItems array
 	const index = todoItems.findIndex((item) => item.id === Number(key));
-	// Create a new object with properties of the current todo item
-	// and a `deleted` property which is set to true
 	const todo = {
 		deleted: true,
 		...todoItems[index],
 	};
-	// remove the todo item from the array by filtering it out
 	todoItems = todoItems.filter((item) => item.id !== Number(key));
 	renderTodo(todo);
 }
 
-// Select the form element
 const form = document.querySelector('.js-form');
-// Add a submit event listener
 form.addEventListener('submit', (event) => {
-	// prevent page refresh on form submission
 	event.preventDefault();
-	// select the text input
 	const input = document.querySelector('.js-todo-input');
 
-	// Get the value of the input and remove whitespace
 	const text = input.value.trim();
 	if (text !== '') {
 		addTodo(text);
@@ -91,9 +72,7 @@ form.addEventListener('submit', (event) => {
 	}
 });
 
-// Select the entire list
 const list = document.querySelector('.js-todo-list');
-// Add a click event listener to the list and its children
 list.addEventListener('click', (event) => {
 	if (event.target.classList.contains('js-tick')) {
 		const itemKey = event.target.parentElement.dataset.key;
@@ -107,7 +86,7 @@ list.addEventListener('click', (event) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-	const ref = localStorage.getItem('todoItemsRef');
+	const ref = localStorage.getItem('todoItems');
 	if (ref) {
 		todoItems = JSON.parse(ref);
 		todoItems.forEach((t) => {

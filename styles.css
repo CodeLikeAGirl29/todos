@@ -117,6 +117,8 @@ input[type="text"] {
   border: 3px solid #333;
 }
 
+/* Add this below all the other styles */
+
 .empty-state {
   flex-direction: column;
   align-items: center;
@@ -133,6 +135,7 @@ input[type="text"] {
   margin-bottom: 20px;
 }
 
+/* Add this below the other styles */
 .todo-list:empty {
   display: none;
 }

@@ -6,22 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todos</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+   
   </head>
   <body>
     <main>
       <div class="container">
         <h1 class="app-title">todos</h1>
         <ul class="todo-list js-todo-list"></ul>
-
+        <!-- add the empty state here -->
         <div class="empty-state">
           <svg class="checklist-icon"><use href="#checklist-icon"></use></svg>
           <h2 class="empty-state__title">Add your first todo</h2>
           <p class="empty-state__description">What do you want to get done
             today?</p>
         </div>
-
-        <form class="todo-form js-form">
+        <!-- end -->
+        <form class="js-form">
           <input autofocus type="text" aria-label="Enter a new todo item"
             placeholder="E.g. Build a web app" class="js-todo-input">
         </form>
@@ -165,5 +165,6 @@
                                       fill="#D80027"/></symbol>
                                   </defs>
                                 </svg>
+                                <script src="script.js"></script>
                               </body>
                             </html>
